@@ -4,6 +4,7 @@
 
 // kan just nu bara göra serier baserade på två toner med uppåt-intervall
 // icke testad med riktigt långa serier
+// gjord för legacy max js engine
 
 //  framtida förändringar:
 //  - fler noter som start
