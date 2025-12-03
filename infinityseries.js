@@ -1,20 +1,9 @@
-////////////////////////////////////////////////////////////////////////////////
-/////      Emanuels Per Nørgård-type infinite series generator v0.0.01    //////
-////////////////////////////////////////////////////////////////////////////////
-
-// kan just nu bara göra serier baserade på två toner med uppåt-intervall
-// icke testad med riktigt långa serier
-// gjord för legacy max js engine
-
-//  framtida förändringar:
-//  - fler noter som start
-//	- annan ordning av inversion/icke-inversion
-
-inlets = 3;      // 0 = bang generate, 1 = seed, 2 = size
+inlets = 4;      // 0 = bang generate, 1 = seed, 2 = size, 3 = mode
 outlets = 1;     // output list
 
 var seed = 1;
 var size = 16;
+var mode = 0;    // 0 = subtract/add, 1 = add/subtract, 2= add/add, 3=subtract/subtract
 
 // handle ints
 function msg_int(v) {
@@ -22,6 +11,8 @@ function msg_int(v) {
         seed = v;
     } else if (inlet === 2) {
         size = v;
+    } else if (inlet === 3) {
+        mode = v;
     }
 }
 
@@ -54,9 +45,20 @@ function bang() {
         var secondLast = sequence[sequence.length - 2];
         var last = sequence[sequence.length - 1];
 
-        // push new values
-        sequence.push(secondLast - dist);
-        sequence.push(last + dist);
+        // push new values based on mode
+        if (mode === 0) {
+            sequence.push(secondLast - dist);
+            sequence.push(last + dist);
+        } else if (mode === 1) {
+            sequence.push(secondLast + dist);
+            sequence.push(last - dist);
+        } else if (mode === 2) {
+            sequence.push(secondLast + dist);
+            sequence.push(last + dist);
+        } else if (mode === 3) {
+            sequence.push(secondLast - dist);
+            sequence.push(last - dist);
+        }
 
         germinalIndex++;
     }
@@ -68,3 +70,4 @@ function bang() {
 }
 
 //originalimplementation från "SM" på https://tablesandwaves.github.io/infinity-series/ & https://github.com/tablesandwaves
+//används under MIT-licens
