@@ -4,12 +4,23 @@ infinityseries.js is a script for max that automatically generates infinite inte
 
 ## inlets
 	inlet 0 -- bang to output series as a standard max list
-	inlet 1 -- select seed interval _(only positive integers work as of now)_
-	inlet 2 -- select series length
-	inlet 3 -- select inversion mode
+	inlet 1 -- select series length
+	inlet 2 -- select inversion mode
+	inlet 3 -- seed interval (int for two-note seed, list for three-note seed)
 
 ### modes:
+#### two note operation
 	0 = -/+
 	1 = +/-
 	2 = +/+
 	3 = -/-x
+
+#### three note operation
+	0 = -/+/-
+	1 = -/+/+
+	2 = -/-/-
+	3 = -/-/+
+	4 = +/+/-
+	5 = +/+/+
+	6 = +/-/-
+	7 = +/-/+
