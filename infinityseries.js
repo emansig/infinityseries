@@ -1,4 +1,4 @@
-inlets = 4;      // 0 = bang generate, 1 = seed, 2 = size, 3 = mode
+inlets = 4;      // 0 = bang generate, 1 = size, 2 = mode, 3 = seed
 outlets = 1;     // output list
 
 var seed = 1;
@@ -7,21 +7,13 @@ var mode = 0;    // 0 = subtract/add, 1 = add/subtract, 2= add/add, 3=subtract/s
 
 // handle ints
 function msg_int(v) {
-    if (inlet === 1) {
+    if (inlet === 3) {
         seed = v;
-    } else if (inlet === 2) {
+    } else if (inlet === 1) {
         size = v;
-    } else if (inlet === 3) {
+    } else if (inlet === 2) {
         mode = v;
-    }
-}
-
-// handle list: allow "seed size" on inlet 1
-function list() {
-    if (inlet === 1) {
-        if (arguments.length > 0) seed = arguments[0];
-        if (arguments.length > 1) size = arguments[1];
-    }
+    } 
 }
 
 function bang() {
